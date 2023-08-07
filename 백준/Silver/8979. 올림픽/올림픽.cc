@@ -41,12 +41,12 @@ int main() {
 		{
 			if (world[i][0] > 0)
 				score++;
-			else if (world[i][0] == 0 && world[i][1] == world[k][1])
+			else if (world[i][1] == world[k][1])
 			{
 				if (world[i][2] > world[i][2])
 					score++;
 			}
-			else if (world[i][0] == 0 && world[i][1] > world[k][1])
+			else if (world[i][1] > world[k][1])
 				score++;
 		}
 	}
@@ -62,5 +62,7 @@ int main() {
 				score++;
 		}
 	}
+	else
+		score = n;
 	cout << score;
 }
