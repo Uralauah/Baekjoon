@@ -6,14 +6,16 @@ import java.util.StringTokenizer;
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringBuilder sb = new StringBuilder();
 
         StringTokenizer st = new StringTokenizer(br.readLine());
 
         int num1 = Integer.parseInt(st.nextToken()), num2 = Integer.parseInt(st.nextToken());
         for (int i=num1;i<=num2;i++){
             if (isPrime(i))
-                System.out.println(i);
+                sb.append(i).append('\n');
         }
+        System.out.println(sb);
     }
 
     public static boolean isPrime(int num){
