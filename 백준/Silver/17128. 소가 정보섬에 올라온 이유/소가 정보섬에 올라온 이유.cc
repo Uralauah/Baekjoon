@@ -3,12 +3,14 @@ using namespace std;
 #define MAX 200007
 
 int cal(int arr[], int fun, int sum, int n) {
+	int temp=0;
 	for (int i = 0; i < 4; i++) {
 		if (fun - i <= 0) {
 			fun = fun + n;
 		}
-		sum += arr[fun - i] * arr[fun + 1 - i] * arr[fun + 2 - i] * arr[fun + 3 - i];
+		temp += arr[fun - i] * arr[fun + 1 - i] * arr[fun + 2 - i] * arr[fun + 3 - i];
 	}
+	sum -= temp * 2;
 	return sum;
 }
 
@@ -28,26 +30,14 @@ int main() {
 	}
 	for (int i = 1; i <= q; i++) {
 		cin >> fun;
-		for (int i = 0; i < 4; i++) {
-			temp = fun;
-			if (fun - i <= 0) {
-				temp = temp + n;
-			}
-			sum -= arr[temp - i] * arr[temp + 1 - i] * arr[temp + 2 - i] * arr[temp + 3 - i];
-		}
+
+		sum = cal(arr, fun, sum, n);
 
 		if (fun < 4) {
 			arr[n + fun] = -arr[fun];
 		}
 		arr[fun] = -arr[fun];
 
-
-		//for (int i = 1; i <= n+6; i++) {
-		//	cout << arr[i] << " ";
-		//}
-		//cout << "\n";
-
-		sum = cal(arr, fun, sum, n);
 		cout << sum << '\n';
 	}
 }
