@@ -2,8 +2,8 @@
 using namespace std;
 
 int main(){
-	int a[301][301], b[601][601];
-	int h, w, x, y, num ,ax = 0, ay = 0;
+	int b[601][601];
+	int h, w, x, y, num;
 
 	cin>>h>>w>>x>>y;
 	for (int i=0;i<h+x;i++){
