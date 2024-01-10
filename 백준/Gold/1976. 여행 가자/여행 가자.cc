@@ -2,56 +2,50 @@
 
 using namespace std;
 
-int city[201][201] = {0};
-bool visited[201] = {false};
-int n;
+int n, m, arr[201];
 
-bool search(int trip, int next_trip) {
-
-    if (trip == next_trip)
-        return true;
-    if (city[trip][next_trip] == 1) {
-        return true;
-    }
-    for (int i = 1; i <= n; i++) {
-        if (city[trip][i] == 1 && !visited[i]) {
-            visited[i] = true;
-
-            if (search(i, next_trip))
-                return true;
-
-        }
-    }
-    return false;
+int Find(int a) {
+    if (arr[a] == a)
+        return a;
+    return arr[a] = Find(arr[a]);
 }
 
-void reset() {
-    for (int i = 1; i <= n; i++) {
-        visited[i] = false;
-    }
+void Union(int i, int j) {
+    i = Find(i);
+    j = Find(j);
+    if (i == j)
+        return;
+    arr[i] = j;
+    Find(i);
+
 }
 
 int main() {
-    int m, trip = 0, next_trip;
-    bool fail = false;
     cin >> n >> m;
+    int input;
+    for (int i = 1; i <= n; i++)
+        arr[i] = i;
     for (int i = 1; i <= n; i++) {
         for (int j = 1; j <= n; j++) {
-            cin >> city[i][j];
+            cin >> input;
+            if (input == 1)
+                Union(i, j);
+            
         }
     }
-    for (int i = 0; i < m; i++) {
-        reset();
-        cin >> next_trip;
-        if (trip != 0) {
-            if (!search(trip, next_trip)) {
-                fail = true;
-            }
-        }
-        trip = next_trip;
+    int cur, next;
+    bool trip = true;
+    cin >> cur;
+    for (int i = 1; i < m; i++) {
+        cin >> next;
+        if (Find(cur) != Find(next))
+            trip = false;
+        if (!trip)
+            break;
+        cur = next;
     }
-    if (fail)
-        cout << "NO";
-    else
+    if (trip)
         cout << "YES";
+    else
+        cout << "NO";
 }
