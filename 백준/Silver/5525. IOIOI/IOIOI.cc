@@ -4,6 +4,9 @@
 using namespace std;
 
 int main() {
+    ios::sync_with_stdio(false);
+    cin.tie(NULL);
+    cout.tie(NULL);
     int n, m, sum = 0;
     string input;
     string io = "I";
@@ -12,9 +15,18 @@ int main() {
         io += "OI";
     }
     for (int i = 0; i < m; i++) {
+        int temp = 0;
         if (input[i] == 'I') {
-            if (input.substr(i, 2 * n + 1) == io)
-                sum++;
+            while (true) {
+                if (input[i + 1] != 'O' || input[i + 2] != 'I')
+                    break;
+                temp++;
+                if (temp == n) {
+                    temp--;
+                    sum++;
+                }
+                i += 2;
+            }
         }
     }
     cout << sum;
