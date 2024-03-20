@@ -1,4 +1,5 @@
 
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -10,22 +11,24 @@ public class Main {
         int n = Integer.parseInt(br.readLine());
         StringBuffer sb = new StringBuffer();
         StringTokenizer st = new StringTokenizer(br.readLine());
-        HashSet<Integer> hs = new HashSet<>(n);
+        ArrayList<Integer> temp = new ArrayList<>(n);
         ArrayList<Integer> input = new ArrayList<>(n);
         HashMap<Integer,Integer> ans = new HashMap<>();
         while(st.hasMoreTokens()){
             int tmp = Integer.parseInt(st.nextToken());
-            hs.add(tmp);
             input.add(tmp);
+            temp.add(tmp);
         }
-        ArrayList<Integer> temp = new ArrayList<>(hs);
-        Collections.sort(temp);
-        for(int i=0;i<temp.size();i++){
-            ans.put(temp.get(i),i);
+        Collections.sort(input);
+        int cnt=0;
+        for(int i=0;i<input.size();i++){
+            if(!ans.containsKey(input.get(i))){
+                ans.put(input.get(i),cnt++);
+            }
         }
 
-        for(int i=0;i<input.size();i++){
-            sb.append(ans.get(input.get(i))+" ");
+        for(int i=0;i<n;i++){
+            sb.append(ans.get(temp.get(i))+" ");
         }
         System.out.println(sb);
 
