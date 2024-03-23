@@ -1,5 +1,6 @@
 import java.util.*;
 
+/*22012123 이승현*/
 class Solution {
     public int[] solution(int[] numbers) {
         ArrayList<Integer>temp = new ArrayList<Integer>();
@@ -16,7 +17,7 @@ class Solution {
             answer[i]=temp.get(i);
         return answer;
     }
-    
+
     public void sort(ArrayList<Integer> numbers){
         int n = numbers.size();
         for(int i=1;i<n;i++){
