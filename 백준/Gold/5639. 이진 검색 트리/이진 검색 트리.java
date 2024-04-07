@@ -12,18 +12,18 @@ public class Main {
         Node(int value){
             this.value = value;
         }
-        void insert(int value){
-            if(value<this.value){
-                if(this.left==null)
-                    this.left=new Node(value);
+        void insert(int input){
+            if(input<this.value){
+                if(this.left!=null)
+                    this.left.insert(input);
                 else
-                    this.left.insert(value);
+                    this.left=new Node(input);
             }
             else{
-                if(this.right==null)
-                    this.right=new Node(value);
+                if(this.right!=null)
+                    this.right.insert(input);
                 else
-                    this.right.insert(value);
+                    this.right=new Node(input);
             }
         }
     }
